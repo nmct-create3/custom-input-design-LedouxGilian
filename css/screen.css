@@ -38,6 +38,7 @@
     --global-color-neutral-xx-dark: #4b4c60;
     --global-color-neutral-xxx-dark: #35374d;
     --global-color-neutral-xxxx-dark: #20223a;
+    --global-card-color: white;
 
     /* border stuff */
     --global-borderRadius: 3px;
@@ -63,6 +64,17 @@
     --global-input-hover-borderColor: var(--global-color-neutral-xx-light);
     --global-input-focus-borderColor: var(--global-color-alpha);
     --global-input-boxShadow: 0 0 0 3px var(--global-color-alpha-x-transparent);
+
+    --global-page-color: var(--global-color-neutral-xxxx-dark);
+    --global-page-backgroundColor: var(--global-color-neutral-xxxx-light);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --global-page-color: White;
+        --global-page-backgroundColor: var(--global-color-neutral-xxxx-dark);
+        --global-card-color: var(--global-color-neutral-xxx-dark)
+    }
 }
 
 /*------------------------------------*\
@@ -79,8 +91,8 @@ html {
     font-size: 16px;
     line-height: 1.5;
     font-family: "Inter Web", Helvetica, arial, sans-serif;
-    color: var(--global-color-neutral-xxxx-dark);
-    background-color: var(--global-color-neutral-xxxx-light);
+    color: var(--global-page-color);
+    background-color: var(--global-page-backgroundColor);
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;    
@@ -539,7 +551,7 @@ input::placeholder {
 */
 
 .c-card {
-    background-color: White;
+    background-color: var(--global-card-color);
     margin-bottom: var(--global-whitespace);
     border-radius: var(--global-borderRadius);
     box-shadow: 0 0 0 var(--global-borderWidth) rgba(0,0,0, 0.05), 0 2px 4px rgba(0,0,0,.075);
@@ -686,7 +698,6 @@ input::placeholder {
     height: 16px;
     border: 1px solid var(--custom-option-borderColor);
     margin-right: 8px;
-    display: flex;
     align-items: center;
     justify-content: center;
 }
@@ -718,6 +729,91 @@ input::placeholder {
 
 .c-custom-option:hover .c-custom-option__fake-input {
     border-color: var(--global-input-hover-borderColor);
+}
+
+
+.c-custom-toggle {
+    display: flex;
+    align-items: center;
+}
+
+.c-custom-toggle__fake-input {
+    display: block;
+    width: 48px;
+    height: 24px;
+    background-color: var(--global-color-neutral-xxxx-light);
+    border: 1px solid var(--global-input-borderColor);
+    border-radius: 15px;
+    margin-right: 8px;
+}
+
+.c-custom-toggle__fake-input::after {
+    content: "";
+    display: block;
+    width: 22px;
+    height: 22px;
+    background-color: white;
+    border-radius: 22px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16);
+    transition: all 150ms ease;
+}
+
+.c-option--hidden:checked + .c-custom-toggle .c-custom-toggle__fake-input {
+    background-color: var(--global-color-alpha);
+    border-color: var(--global-color-alpha-dark);
+}
+
+.c-option--hidden:checked + .c-custom-toggle .c-custom-toggle__fake-input::after {
+    transform: translateX(24px);
+}
+
+.c-option--hidden:focus + .c-custom-toggle .c-custom-toggle__fake-input {
+    border-color: var(--global-color-alpha);
+    box-shadow: var(--global-input-boxShadow);
+}
+
+.c-option--hidden:active + .c-custom-toggle .c-custom-toggle__fake-input::after {
+    width: 28px;
+}
+
+.c-option--hidden:active:checked + .c-custom-toggle .c-custom-toggle__fake-input::after {
+    width: 28px;
+    transform: translateX(18px);
+}
+
+.c-custom-toggle--inverted {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.c-custom-toggle--inverted .c-custom-toggle__fake-input {
+    margin-right: 0;
+}
+
+.c-toggle-list__item {
+    margin-bottom: 12px;
+}
+
+.c-toggle-list__item + .c-toggle-list__item {
+    padding-top: 12px;
+    border-top: 1px solid rgba(0, 0, 0, 0.16);
+}
+
+
+.c-custom-select {
+    display: block;
+    position: relative;
+}
+
+.c-custom-select__symbol {
+    width: 24px;
+    height: 24px;
+    fill: var(--global-color-neutral-x-light);
+    position: absolute;
+    top: 11px;
+    right: 11px;
+    pointer-events: none;
 }
 
 /*
