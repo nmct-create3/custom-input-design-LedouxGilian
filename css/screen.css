@@ -686,7 +686,7 @@ input::placeholder {
 }
 
 .c-custom-option:hover {
-    
+
 }
 
 .c-custom-option__fake-input {
@@ -701,6 +701,10 @@ input::placeholder {
 
     align-items: center;
     justify-content: center;
+}
+
+.c-custom-option__fake-input:hover {
+    border-color: var(--global-color-neutral-x-light);
 }
 
 .c-custom-option__fake-input--checkbox {
