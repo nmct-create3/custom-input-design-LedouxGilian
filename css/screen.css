@@ -42,6 +42,7 @@
     /* border stuff */
     --global-borderRadius: 3px;
     --global-borderWidth: 1px;
+    --global-input-borderColor: var(--global-color-neutral-xxx-light);
 
     /* transitions */
     --global-transitionTiming-alpha: .1s ease-out;
@@ -675,6 +676,67 @@ input::placeholder {
 .c-button:active {
     background-color: var(--global-color-alpha-dark);
     box-shadow: none;
+}
+
+/*
+    Component: Custom option
+*/
+.c-custom-option {
+    display: flex;
+}
+
+.c-custom-option:hover {
+    
+}
+
+.c-custom-option__fake-input {
+    --custom-option__fake-input-size: calc(var(--global-baseline) * 2);
+
+    display: flex;
+    height: var(--custom-option__fake-input-size);
+    width: var(--custom-option__fake-input-size);
+    border: var(--global-borderWidth) solid var(--global-input-borderColor);
+    border-radius: var(--global-borderRadius);
+    margin-right: 8px;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.c-custom-option__fake-input--checkbox {
+    
+}
+
+.c-custom-option__fake-input--radio {
+    border-radius: 100%;
+}
+
+.c-custom-option__symbol {
+    opacity: 0;
+    transition: 0.25s;
+}
+
+.c-custom-option__fake-input--checkbox .c-custom-option__symbol {
+    width: 10px;
+    height: 10px;
+    fill: var(--global-color-alpha);
+    
+}
+  
+.c-custom-option__fake-input--radio .c-custom-option__symbol {
+    width: 6px;
+    height: 6px;
+    background-color: var(--global-color-alpha);
+    border-radius: 50%; 
+}
+
+.c-option--hidden:checked + .c-custom-option {
+
+}
+
+.c-option--hidden:checked + .c-custom-option .c-custom-option__symbol {
+    opacity: 1;
+    transition: 0.25s;
 }
 
 /*------------------------------------*\
